@@ -1,7 +1,8 @@
 const statusDisplay = document.querySelector('.status');
 const scoreDisplay = document.querySelector('.score');
 
-let gameActive = true;
+let gameActive = 1;
+let allowButtonPress = true;
 let currentPlayer = 'X';
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let availableMoves = [0,1,2,3,4,5,6,7,8]
@@ -9,7 +10,7 @@ let computerScore = 0;
 let playerScore = 0;
 
 
-const winningMessage = () => `Player ${currentPlayer} has won!`;
+const winningMessage = () => `${displayPlayer = currentPlayer === "X" ? "Computer" : " Player"} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's the ${displayPlayer = currentPlayer === "X" ? "Computer" : " Player"}'s turn`;
 const score = () => `Computer: ${computerScore} | Player: ${playerScore}`
@@ -44,11 +45,15 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function computerTurn(){
-    cellChosen = availableMoves[ Math.floor(Math.random()*availableMoves.length)]
+    allowButtonPress = 0;
+    cellChosen = availableMoves[ Math.floor(Math.random()*availableMoves.length)];
     // sleep a second to give the illusion of the a sophisticated ai making the highest chess elo decision, all to mask it randomly chosing numbers
-    await sleep(1000)
-    document.getElementById(cellChosen).click()
-    console.log('Computer Number', cellChosen)
+    await sleep(1000);
+    // handleCellPlayed(document.getElementById(cellChosen), cellChosen);
+    // handleResultValidation();
+    allowButtonPress = 1;
+    document.getElementById(cellChosen).click();
+    console.log('Computer Number', cellChosen);
     
 }
 
@@ -83,6 +88,9 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
+            document.getElementById(winCondition[0]).style.backgroundColor='Green';
+            document.getElementById(winCondition[1]).style.backgroundColor='Green';
+            document.getElementById(winCondition[2]).style.backgroundColor='Green';
             if(currentPlayer === 'X'){computerScore=+1; break}
             else{playerScore =+1; break }
             
@@ -109,13 +117,14 @@ function handleResultValidation() {
 }
 
 function handleCellClick(clickedCellEvent) {
+    if(allowButtonPress == 0){return;}
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
     
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
-    
+    // console.log('ClickedCellEvent:', clickedCellEvent)
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
 }
@@ -132,17 +141,21 @@ function handleRestartGame() {
     statusDisplay.innerHTML = currentPlayerTurn();
     
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor="rgb(41, 41, 41)");
+    
     
     
     
 }
+
+
+
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.restart').addEventListener('click', handleRestartGame);
 
 
 
-while(currentPlayer === 'X'){computerTurn(); console.log('Working')}
 
 
 

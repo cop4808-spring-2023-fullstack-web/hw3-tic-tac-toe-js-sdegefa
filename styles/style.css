@@ -79,16 +79,47 @@ a:visited {
     padding: 0.8rem;
     border: 0;
     border-radius: 40px;
-    width: 8rem;
-    cursor: pointer;
+    width: 9rem;
+    cursor: grab; /*changed the cursor to the grabbing animation because I think its neat*/
 }
 
 .restart:hover {
+    color: rgb(211, 0, 0);
+    background-color: rgb(185, 185, 185);
+    box-shadow: 0 5px 15px rgba(77, 77, 77, 0.4);
+}
+.restart:active{
+    cursor:grabbing
+}
+
+/*
+    Next Game Button
+*/
+.nextGame {
+    color: rgb(65, 65, 65);
+    background-color: rgb(231, 231, 231);
+    font-size: 1.2rem;
+    font-weight: 600;
+    order: 1;
+    margin: 2rem;
+    padding: 0.8rem;
+    border: 0;
+    border-radius: 40px;
+    width: 9rem;
+    cursor: grab;
+}
+
+.nextGame:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(185, 185, 185);
-    box-shadow: 0 5px 15px rgba(167, 167, 167, 0.4);
-
+    box-shadow: 0 5px 15px rgba(77, 77, 77, 0.4);
 }
+.nextGame:active{
+    cursor:grabbing
+}
+
+
+
 
 /*************************************/
 /******         Footer           *****/

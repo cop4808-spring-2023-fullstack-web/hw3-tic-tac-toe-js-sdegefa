@@ -1,1 +1,11 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10027970&assignment_repo_type=AssignmentRepo)
+
+<div align="center">
+  <h1>Tic-Tac-Toe</h1>
+  
+  <img src="./images/ticTacToeGame.gif" >
+</div>
+
+Derived from Michael Kolesidis's tic tac toe game made for two people, this rendition allows you to play against the computer.
+
+
+<a href="https://tic-tac-toe-michael.netlify.app/"><h3 align="center">Try Original Here</h3></a>

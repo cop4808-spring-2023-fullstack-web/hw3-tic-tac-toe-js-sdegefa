@@ -39,10 +39,14 @@ function flipCoin(){
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
-
-
-function computerTurn(){
+// stackoverflow Sleep function
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function computerTurn(){
     cellChosen = availableMoves[ Math.floor(Math.random()*availableMoves.length)]
+    // sleep a second to give the illusion of the a sophisticated ai making the highest chess elo decision, all to mask it randomly chosing numbers
+    await sleep(1000)
     document.getElementById(cellChosen).click()
     console.log('Computer Number', cellChosen)
     

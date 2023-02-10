@@ -54,7 +54,8 @@ async function computerTurn(){
 
     await sleep(1000);  // sleep a second to give the illusion of the a sophisticated ai making the highest chess elo decision, all to mask it randomly chosing numbers
     allowButtonPress = 1;                        // Reenables button press registration 
-    document.getElementById(cellChosen).click(); // and clicks the button that contains the same id as the one that was decided from the array
+    document.querySelector(`[data-cell-index="${cellChosen}"]`).click()
+    // document.getElementById(cellChosen).click(); // and clicks the button that contains the same id as the one that was decided from the array
     // console.log('Computers Chosen Number', cellChosen);  // This decision is then printed to the console  (mainly for debugging)
     
 }
@@ -89,9 +90,9 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
-            document.getElementById(winCondition[0]).style.backgroundColor='Green'; // sets the winning combination to green
-            document.getElementById(winCondition[1]).style.backgroundColor='Green';
-            document.getElementById(winCondition[2]).style.backgroundColor='Green';
+            document.querySelector(`[data-cell-index="${winCondition[0]}"]`).style.backgroundColor='Green'; // sets the winning combination to green
+            document.querySelector(`[data-cell-index="${winCondition[1]}"]`).style.backgroundColor='Green';
+            document.querySelector(`[data-cell-index="${winCondition[2]}"]`).style.backgroundColor='Green';
             if(currentPlayer === 'O'){computerScore=+1; break}                      // adds a point to whoever won
             else{playerScore =+1; break }
             
@@ -127,6 +128,12 @@ function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;    // this is to make sure the player doesnt cheat and play for the computer
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
     
+
+    
+
+
+
+
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
